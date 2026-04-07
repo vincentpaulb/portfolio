@@ -264,7 +264,7 @@
     }
     h2 em { font-style: italic; color: var(--accent); }
     .section-copy {
-      color: var(--ink-3); font-size: 0.95rem; max-width: 55ch;
+      color: var(--ink-3); font-size: 0.95rem; max-width: 1080px;
       line-height: 1.8; font-weight: 300;
     }
 
@@ -303,7 +303,7 @@
     [data-theme="dark"] #skills { background: var(--bg-alt); }
 
     #skills .skills-header {
-      display: grid; grid-template-columns: 1fr 2fr; gap: 64px;
+      display: grid; grid-template-columns: 1fr; gap: 64px;
       align-items: end; margin-bottom: 56px;
     }
     .skill-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
@@ -501,12 +501,79 @@
     /* ═══════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════
+       HERO PHOTO
+    ═══════════════════════════════════════ */
+    .hero {
+      padding: 100px 0 0;
+      overflow: hidden;
+    }
+    .hero-inner {
+      align-items: end;
+    }
+    .hero-left {
+      padding-bottom: 80px;
+    }
+    .hero-right {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      align-self: end;
+      height: 100%;
+    }
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      min-height: 640px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: -1px;
+    }
+    .hero-portrait {
+      position: relative;
+      z-index: 2;
+      width: 132%;
+      max-width: none;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      transform: translateX(150px);
+      filter: drop-shadow(0 20px 34px rgba(14,13,11,0.10));
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
     @media (max-width: 900px) {
       .hero-inner, #about .about-grid, #experience .exp-layout,
       .contact-grid, #skills .skills-header { grid-template-columns: 1fr; gap: 48px; }
       .about-sticky { position: static; }
       .exp-header-left { position: static; }
       .exp-entry { grid-template-columns: 1fr; gap: 6px; }
+
+      .hero {
+        padding: 60px 0 0;
+      }
+      .hero-left {
+        padding-bottom: 28px;
+        order: 2;
+      }
+      .hero-right {
+        order: 1;
+        justify-content: center;
+      }
+      .hero-visual {
+        min-height: unset;
+        max-width: 100%;
+        justify-content: center;
+      }
+      .hero-portrait {
+        width: auto;
+        max-width: 55%;
+        transform: translateX(0) !important;
+      }
     }
     @media (max-width: 720px) {
       .hamburger { display: flex; }
@@ -522,10 +589,18 @@
       .projects-grid { grid-template-columns: 1fr; }
       .skill-groups { grid-template-columns: 1fr; }
       .skill-group { border-right: none !important; }
+
+      .hero-portrait {
+        max-width: 65%;
+      }
     }
     @media (max-width: 520px) {
-      .hero { padding: 60px 0 56px; }
+      .hero { padding: 48px 0 0; }
       .footer-inner { flex-direction: column; text-align: center; }
+
+      .hero-portrait {
+        max-width: 75%;
+      }
     }
   </style>
 </head>
@@ -571,6 +646,9 @@
           <a class="btn btn-primary" href="#projects">
             <i class="fa-solid fa-arrow-down"></i> View Projects
           </a>
+          <a class="btn btn-accent" href="VincentPaulBarruga_RESUME.pdf" download="Vincent_Paul_Barruga_Resume.pdf" target="_blank">
+            <i class="fa-solid fa-download"></i> Resume
+          </a>
           <a class="btn btn-ghost" href="#contact">
             Let's Talk <i class="fa-solid fa-arrow-right"></i>
           </a>
@@ -591,41 +669,12 @@
         </div>
       </div>
 
-      <!-- <div class="hero-right fade-up d3">
-        <div class="hero-label">At a Glance</div>
-        <div class="stat-list">
-          <div class="stat-item">
-            <span class="stat-label">Systems Built</span>
-            <span class="stat-val">4+</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label">Ticket Response Boost</span>
-            <span class="stat-val">60%</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label">AI Technology</span>
-            <span class="stat-val">LLM</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label">Retrieval Architecture</span>
-            <span class="stat-val">RAG</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label">Error Reduction</span>
-            <span class="stat-val">20%</span>
-          </div>
+      <div class="hero-right fade-up d3">
+        <div class="hero-visual">
+          <img src="profile.png" alt="Vincent Paul Barruga" class="hero-portrait">
         </div>
-        <div class="stack-chips">
-          <span class="chip">Python</span>
-          <span class="chip">PHP</span>
-          <span class="chip">JavaScript</span>
-          <span class="chip">MySQL</span>
-          <span class="chip">Laravel</span>
-          <span class="chip">FastAPI</span>
-          <span class="chip">Ollama</span>
-          <span class="chip">Bootstrap</span>
-        </div>
-      </div> -->
+      </div>
+
     </div>
   </header>
 
@@ -686,12 +735,11 @@
         <div class="skills-header">
           <div>
             <div class="section-eyebrow reveal">Capabilities</div>
-            <h2 class="reveal">Skills &<br><em>Stack</em></h2>
+            <h2 class="reveal">Skills &<em> Stack</em></h2>
+            <p class="section-copy reveal">
+              A focused mix of development, AI integration, and operational support — each discipline reinforcing the others in real-world projects.
+            </p>
           </div>
-          <p class="section-copy reveal">
-            A focused mix of development, AI integration, and operational support —
-            each discipline reinforcing the others in real-world projects.
-          </p>
         </div>
         <div class="skill-groups reveal">
           <div class="skill-group">
@@ -823,8 +871,7 @@
         <div class="exp-layout">
           <div class="exp-header-left reveal">
             <p class="section-copy">
-              A mix of technical support, systems work, content operations,
-              and practical delivery — building skills across multiple domains.
+              A mix of technical support, systems work, content operations, and practical delivery — building skills across multiple domains.
             </p>
           </div>
           <div class="exp-entries">
@@ -888,7 +935,7 @@
             Whether it's a full-time position or a project collaboration — let's talk.
           </p>
           <div class="contact-actions reveal">
-            <a class="btn btn-primary" href="mailto:vincentpaulbarruga@gmail.com">
+            <a class="btn btn-primary" href="/cdn-cgi/l/email-protection#64120d0a07010a101405110806051616110305240309050d084a070b09">
               <i class="fa-solid fa-envelope"></i> Email Me
             </a>
             <a class="btn btn-accent" href="VincentPaulBarruga_RESUME.pdf" download="Vincent_Paul_Barruga_Resume.pdf" target="_blank">
@@ -903,14 +950,14 @@
               <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
               <div>
                 <div class="ci-label">Email</div>
-                <div class="ci-val"><a href="mailto:vincentpaulbarruga@gmail.com">vincentpaulbarruga@gmail.com</a></div>
+                <div class="ci-val"><a href="/cdn-cgi/l/email-protection#aed8c7c0cdcbc0dadecfdbc2cccfdcdcdbc9cfeec9c3cfc7c280cdc1c3"><span class="__cf_email__" data-cfemail="45332c2b26202b313524302927243737302224052228242c296b262a28">[email&#160;protected]</span></a></div>
               </div>
             </div>
             <div class="contact-item reveal">
               <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
               <div>
                 <div class="ci-label">Phone</div>
-                <div class="ci-val">+63 939 568 9851</div>
+                <div class="ci-val">09395689851 / 09167672042</div>
               </div>
             </div>
             <div class="contact-item reveal">
@@ -928,7 +975,7 @@
             <a class="social-link" href="https://www.linkedin.com/in/vincent-paul-barruga" target="_blank" title="LinkedIn">
               <i class="fa-brands fa-linkedin-in"></i>
             </a>
-            <a class="social-link" href="mailto:vincentpaulbarruga@gmail.com" title="Email">
+            <a class="social-link" href="/cdn-cgi/l/email-protection#ef9986818c8a819b9f8e9a838d8e9d9d9a888eaf88828e8683c18c8082" title="Email">
               <i class="fa-solid fa-envelope"></i>
             </a>
           </div>
@@ -943,7 +990,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Theme Toggle ──
     const html = document.documentElement;
     const toggleBtn = document.getElementById('themeToggle');
