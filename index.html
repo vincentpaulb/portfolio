@@ -149,15 +149,16 @@
        HERO
     ═══════════════════════════════════════ */
     .hero {
-      padding: 100px 0 80px;
+      padding: 100px 0 0;
       border-bottom: 1px solid var(--border);
+      overflow: hidden;
     }
     .hero-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
+      gap: 64px; align-items: end;
     }
-    .hero-left {}
+    .hero-left { padding-bottom: 80px; }
     .status-pill {
       display: inline-flex; align-items: center; gap: 8px;
       border: 1px solid var(--green-border);
@@ -216,8 +217,35 @@
     }
     .meta-item i { color: var(--accent); width: 14px; }
 
-    /* Hero right — stats column */
-    .hero-right { display: flex; flex-direction: column; gap: 0; }
+    /* Hero right — photo column */
+    .hero-right {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      align-self: end;
+      height: 100%;
+    }
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      min-height: 640px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: -1px;
+    }
+    .hero-portrait {
+      position: relative;
+      z-index: 2;
+      width: 132%;
+      max-width: none;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      transform: translateX(150px);
+      filter: drop-shadow(0 20px 34px rgba(14,13,11,0.10));
+    }
     .hero-label {
       font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em;
       color: var(--ink-4); font-weight: 600; margin-bottom: 20px;
@@ -501,79 +529,12 @@
     /* ═══════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════ */
-    /* ═══════════════════════════════════════
-       HERO PHOTO
-    ═══════════════════════════════════════ */
-    .hero {
-      padding: 100px 0 0;
-      overflow: hidden;
-    }
-    .hero-inner {
-      align-items: end;
-    }
-    .hero-left {
-      padding-bottom: 80px;
-    }
-    .hero-right {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      align-self: end;
-      height: 100%;
-    }
-    .hero-visual {
-      position: relative;
-      width: 100%;
-      max-width: 620px;
-      min-height: 640px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      margin-bottom: -1px;
-    }
-    .hero-portrait {
-      position: relative;
-      z-index: 2;
-      width: 132%;
-      max-width: none;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      transform: translateX(150px);
-      filter: drop-shadow(0 20px 34px rgba(14,13,11,0.10));
-    }
-
-    /* ═══════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════ */
     @media (max-width: 900px) {
       .hero-inner, #about .about-grid, #experience .exp-layout,
       .contact-grid, #skills .skills-header { grid-template-columns: 1fr; gap: 48px; }
       .about-sticky { position: static; }
       .exp-header-left { position: static; }
       .exp-entry { grid-template-columns: 1fr; gap: 6px; }
-
-      .hero {
-        padding: 60px 0 0;
-      }
-      .hero-left {
-        padding-bottom: 28px;
-        order: 2;
-      }
-      .hero-right {
-        order: 1;
-        justify-content: center;
-      }
-      .hero-visual {
-        min-height: unset;
-        max-width: 100%;
-        justify-content: center;
-      }
-      .hero-portrait {
-        width: auto;
-        max-width: 55%;
-        transform: translateX(0) !important;
-      }
     }
     @media (max-width: 720px) {
       .hamburger { display: flex; }
@@ -589,18 +550,172 @@
       .projects-grid { grid-template-columns: 1fr; }
       .skill-groups { grid-template-columns: 1fr; }
       .skill-group { border-right: none !important; }
-
+    }
+    @media (max-width: 900px) {
+      .hero-inner, #about .about-grid, #experience .exp-layout,
+      .contact-grid, #skills .skills-header { grid-template-columns: 1fr; gap: 48px; }
+      .about-sticky { position: static; }
+      .exp-header-left { position: static; }
+      .exp-entry { grid-template-columns: 1fr; gap: 6px; }
+      .hero { padding: 60px 0 0; }
+      .hero-left { padding-bottom: 28px; order: 2; }
+      .hero-right { order: 1; justify-content: center; }
+      .hero-visual {
+        min-height: unset; max-width: 100%; justify-content: center;
+        /* Circular frame */
+        width: 220px; height: 220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid var(--accent);
+        box-shadow: 0 0 0 6px var(--accent-bg), 0 12px 40px rgba(200,105,58,0.2);
+        margin: 0 auto;
+      }
       .hero-portrait {
-        max-width: 65%;
+        width: 100% !important; max-width: none !important;
+        height: 100% !important;
+        object-fit: cover;
+        object-position: top center;
+        transform: translateX(0) scale(1.08) !important;
+        filter: none;
       }
     }
     @media (max-width: 520px) {
       .hero { padding: 48px 0 0; }
       .footer-inner { flex-direction: column; text-align: center; }
+      .hero-visual { width: 180px; height: 180px; }
+    }
 
-      .hero-portrait {
-        max-width: 75%;
-      }
+    /* ═══════════════════════════════════════
+       PROJECT MODAL
+    ═══════════════════════════════════════ */
+    .btn-view {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 0; border: none; background: none;
+      font-family: var(--sans); font-weight: 600; font-size: 0.85rem;
+      cursor: pointer; color: var(--accent);
+      transition: all 0.2s; margin-top: 8px;
+      text-decoration: none; letter-spacing: 0.01em;
+    }
+    .btn-view:hover { color: var(--accent-2); gap: 10px; }
+    .btn-view i { font-size: 0.75rem; transition: transform 0.2s; }
+    .btn-view:hover i { transform: translateX(3px); }
+
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(14,13,11,0.75);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%; max-width: 960px;
+      max-height: 92vh; overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(32px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      position: relative;
+    }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+    .modal-slideshow {
+      position: relative; width: 100%;
+      background: #0e0d0b; border-radius: 16px 16px 0 0; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 200px;
+    }
+    .slide {
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity 0.5s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* Active slide drives the slideshow height */
+    .slide.active {
+      opacity: 1;
+      position: relative;
+      inset: auto;
+    }
+    .slide img {
+      width: 100%; height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    .slide-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+      background: linear-gradient(135deg, var(--bg-alt) 0%, var(--surface-2) 100%);
+    }
+    .slide-ph-icon {
+      width: 72px; height: 72px; border-radius: 16px;
+      background: var(--accent-bg); border: 1px solid var(--accent-border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 1.6rem;
+    }
+    .slide-ph-label { color: var(--ink-4); font-size: 0.82rem; font-weight: 500; }
+    .slide-ph-num {
+      font-family: var(--serif); font-size: 2.5rem; color: var(--border);
+      position: absolute; bottom: 16px; right: 20px; line-height: 1;
+    }
+
+    .slide-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(14,13,11,0.45); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-size: 0.8rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s; backdrop-filter: blur(4px);
+    }
+    .slide-arrow:hover { background: var(--accent); }
+    .slide-arrow.prev { left: 14px; }
+    .slide-arrow.next { right: 14px; }
+
+    .slide-dots {
+      position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 10;
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer; transition: all 0.2s; border: none; padding: 0;
+    }
+    .dot.active { background: #fff; transform: scale(1.3); }
+
+    .modal-close {
+      position: absolute; top: 14px; right: 14px; z-index: 20;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(14,13,11,0.5); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s; backdrop-filter: blur(4px);
+    }
+    .modal-close:hover { background: var(--accent); }
+
+    .modal-body { padding: 28px 32px 32px; }
+    .modal-eyebrow {
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--accent); font-weight: 700; margin-bottom: 8px;
+    }
+    .modal-title {
+      font-family: var(--serif); font-size: 1.5rem; line-height: 1.2;
+      color: var(--ink); margin-bottom: 12px; letter-spacing: -0.3px;
+    }
+    .modal-desc {
+      color: var(--ink-3); font-size: 0.9rem; line-height: 1.8;
+      font-weight: 300; margin-bottom: 20px;
+    }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .modal-feats { display: flex; flex-direction: column; gap: 8px; }
+
+    @media (max-width: 600px) {
+      .modal-body { padding: 20px; }
+      .modal-title { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -668,7 +783,7 @@
 
       <div class="hero-right fade-up d3">
         <div class="hero-visual">
-          <img src="profile.png" alt="Vincent Paul Barruga" class="hero-portrait">
+          <img src="images/profile.png" alt="Vincent Paul Barruga" class="hero-portrait">
         </div>
       </div>
 
@@ -812,6 +927,9 @@
               <div class="feat"><i class="fa-solid fa-chevron-right"></i> Streaming responses with optimized latency for better UX</div>
               <div class="feat"><i class="fa-solid fa-chevron-right"></i> Backend APIs via FastAPI/PHP for real-time processing</div>
             </div>
+            <button class="btn-view" onclick="openModal('p1')">
+              <i class="fa-solid fa-arrow-right"></i> View Project
+            </button>
           </article>
 
           <article class="project-card reveal">
@@ -826,6 +944,9 @@
               <div class="feat"><i class="fa-solid fa-chevron-right"></i> Improved response and resolution time by <strong>60%</strong></div>
               <div class="feat"><i class="fa-solid fa-chevron-right"></i> Enhanced cross-team communication and tracking efficiency</div>
             </div>
+            <button class="btn-view" onclick="openModal('p2')">
+              <i class="fa-solid fa-arrow-right"></i> View Project
+            </button>
           </article>
 
           <article class="project-card reveal">
@@ -840,6 +961,9 @@
               <div class="feat"><i class="fa-solid fa-chevron-right"></i> Improved accountability across multiple teams</div>
               <div class="feat"><i class="fa-solid fa-chevron-right"></i> Real-time reporting and status tracking for better decisions</div>
             </div>
+            <button class="btn-view" onclick="openModal('p3')">
+              <i class="fa-solid fa-arrow-right"></i> View Project
+            </button>
           </article>
 
           <article class="project-card reveal">
@@ -854,6 +978,9 @@
               <div class="feat"><i class="fa-solid fa-chevron-right"></i> Simplified registration with automated report generation</div>
               <div class="feat"><i class="fa-solid fa-chevron-right"></i> Improved end-to-end event management efficiency</div>
             </div>
+            <button class="btn-view" onclick="openModal('p4')">
+              <i class="fa-solid fa-arrow-right"></i> View Project
+            </button>
           </article>
 
         </div>
@@ -932,11 +1059,11 @@
             Whether it's a full-time position or a project collaboration — let's talk.
           </p>
           <div class="contact-actions reveal">
-            <a class="btn btn-primary" href="/cdn-cgi/l/email-protection#64120d0a07010a101405110806051616110305240309050d084a070b09">
+            <a class="btn btn-primary" href="/cdn-cgi/l/email-protection#384e51565b5d564c48594d545a594a4a4d5f59785f55595154165b5755">
               <i class="fa-solid fa-envelope"></i> Email Me
             </a>
             <a class="btn btn-accent" href="VincentPaulBarruga_RESUME.pdf" download="Vincent_Paul_Barruga_Resume.pdf" target="_blank">
-              <i class="fa-solid fa-download"></i> Resume
+              <i class="fa-solid fa-download"></i> Download Resume
             </a>
           </div>
         </div>
@@ -947,7 +1074,7 @@
               <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
               <div>
                 <div class="ci-label">Email</div>
-                <div class="ci-val"><a href="/cdn-cgi/l/email-protection#aed8c7c0cdcbc0dadecfdbc2cccfdcdcdbc9cfeec9c3cfc7c280cdc1c3"><span class="__cf_email__" data-cfemail="45332c2b26202b313524302927243737302224052228242c296b262a28">[email&#160;protected]</span></a></div>
+                <div class="ci-val"><a href="/cdn-cgi/l/email-protection#087e61666b6d667c78697d646a697a7a7d6f69486f65696164266b6765"><span class="__cf_email__" data-cfemail="e5938c8b86808b919584908987849797908284a58288848c89cb868a88">[email&#160;protected]</span></a></div>
               </div>
             </div>
             <div class="contact-item reveal">
@@ -972,7 +1099,7 @@
             <a class="social-link" href="https://www.linkedin.com/in/vincent-paul-barruga" target="_blank" title="LinkedIn">
               <i class="fa-brands fa-linkedin-in"></i>
             </a>
-            <a class="social-link" href="/cdn-cgi/l/email-protection#ef9986818c8a819b9f8e9a838d8e9d9d9a888eaf88828e8683c18c8082" title="Email">
+            <a class="social-link" href="/cdn-cgi/l/email-protection#abddc2c5c8cec5dfdbcadec7c9cad9d9decccaebccc6cac2c785c8c4c6" title="Email">
               <i class="fa-solid fa-envelope"></i>
             </a>
           </div>
@@ -1032,8 +1159,200 @@
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- PROJECT MODALS -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modalBox">
+      <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-slideshow" id="modalSlideshow">
+        <button class="slide-arrow prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="slide-arrow next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="slide-dots" id="slideDots"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-eyebrow" id="modalEyebrow"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-tags" id="modalTags"></div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <div class="modal-feats" id="modalFeats"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const projects = {
+      p1: {
+        num: 'Project 01',
+        title: 'Local Multifunctional AI Chatbot',
+        desc: 'An AI-powered chatbot built for local inference and document-aware support, combining web integration with practical automation features.',
+        tags: ['Python', 'PHP', 'JavaScript', 'Ollama', 'FastAPI'],
+        feats: ['Scalable AI chatbot using LLMs via Ollama for local inference','Retrieval-Augmented Generation (RAG) for file-based querying','Streaming responses with optimized latency for better UX','Backend APIs via FastAPI/PHP for real-time processing'],
+        folder: 'images/Project 1'
+      },
+      p2: {
+        num: 'Project 02',
+        title: 'Internal Ticketing Service System',
+        desc: 'A streamlined ticketing platform for internal IT requests and incident tracking across departments.',
+        tags: ['PHP', 'JavaScript', 'MySQL', 'Bootstrap'],
+        feats: ['Centralized ticketing workflow for all IT requests','Improved response and resolution time by 60%','Enhanced cross-team communication and tracking efficiency'],
+        folder: 'images/Project 2'
+      },
+      p3: {
+        num: 'Project 03',
+        title: 'Project Tracking Hub System',
+        desc: 'A centralized system for monitoring deadlines, deliverables, reporting, and team accountability.',
+        tags: ['Laravel', 'PHP', 'JavaScript', 'MySQL'],
+        feats: ['Structured tracking platform for full project visibility','Improved accountability across multiple teams','Real-time reporting and status tracking for better decisions'],
+        folder: 'images/Project 3'
+      },
+      p4: {
+        num: 'Project 04',
+        title: 'Attendance & Event Management System',
+        desc: 'A management solution for registration, attendance, participant tracking, and automated reporting.',
+        tags: ['PHP', 'JavaScript', 'MySQL', 'Bootstrap'],
+        feats: ['Unified attendance and event/training workflows','Simplified registration with automated report generation','Improved end-to-end event management efficiency'],
+        folder: 'images/Project 4'
+      }
+    };
+
+    let currentSlide = 0, totalSlides = 0;
+
+    // Common image extensions to try
+    const IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+
+    function buildSlide(src) {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      // Let the image size naturally; CSS handles the rest
+      slide.appendChild(img);
+      return slide;
+    }
+
+    function buildPlaceholder(index) {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+      slide.innerHTML = `<div class="slide-placeholder"><div class="slide-ph-icon"><i class="fa-solid fa-image"></i></div><span class="slide-ph-label">Image ${index + 1}</span><span class="slide-ph-num">0${index + 1}</span></div>`;
+      return slide;
+    }
+
+    async function discoverImages(folder) {
+      const images = [];
+      // Try numbered filenames: 1.jpg, 1.png, 2.jpg ... up to 20
+      for (let i = 1; i <= 20; i++) {
+        let found = false;
+        for (const ext of IMG_EXTS) {
+          const src = `${folder}/${i}.${ext}`;
+          const ok = await imageExists(src);
+          if (ok) { images.push(src); found = true; break; }
+        }
+        // Stop after 2 consecutive misses
+        if (!found && i > 1 && images.length > 0) break;
+      }
+      return images;
+    }
+
+    function imageExists(src) {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+      });
+    }
+
+    async function openModal(id) {
+      const p = projects[id];
+      currentSlide = 0;
+
+      // Fill text content immediately
+      document.getElementById('modalEyebrow').textContent = p.num;
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalDesc').textContent = p.desc;
+      document.getElementById('modalTags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      document.getElementById('modalFeats').innerHTML = p.feats.map(f => `<div class="feat"><i class="fa-solid fa-chevron-right"></i> ${f}</div>`).join('');
+
+      // Show modal right away with a loading state
+      const slideshow = document.getElementById('modalSlideshow');
+      slideshow.querySelectorAll('.slide').forEach(s => s.remove());
+      document.getElementById('slideDots').innerHTML = '';
+
+      const loadingSlide = document.createElement('div');
+      loadingSlide.className = 'slide active';
+      loadingSlide.innerHTML = `<div class="slide-placeholder"><div class="slide-ph-icon"><i class="fa-solid fa-spinner fa-spin"></i></div><span class="slide-ph-label">Loading images…</span></div>`;
+      slideshow.insertBefore(loadingSlide, slideshow.querySelector('.slide-arrow'));
+
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      // Discover images
+      const images = await discoverImages(p.folder);
+
+      // Clear loading slide
+      slideshow.querySelectorAll('.slide').forEach(s => s.remove());
+      document.getElementById('slideDots').innerHTML = '';
+
+      if (images.length === 0) {
+        // No images found — show friendly message
+        const ph = document.createElement('div');
+        ph.className = 'slide active';
+        ph.style.position = 'relative';
+        ph.innerHTML = `
+          <div class="slide-placeholder">
+            <span style="font-size:0.95rem; color:var(--ink-4);">Sorry, no available images yet.</span>
+          </div>`;
+        slideshow.insertBefore(ph, slideshow.querySelector('.slide-arrow'));
+        totalSlides = 1;
+      } else {
+        totalSlides = images.length;
+        images.forEach((src, i) => {
+          const slide = buildSlide(src);
+          if (i === 0) {
+            slide.classList.add('active');
+            slide.style.position = 'relative';
+          } else {
+            slide.style.position = 'absolute';
+          }
+          slideshow.insertBefore(slide, slideshow.querySelector('.slide-arrow'));
+
+          const dot = document.createElement('button');
+          dot.className = 'dot' + (i === 0 ? ' active' : '');
+          dot.onclick = () => goToSlide(i);
+          document.getElementById('slideDots').appendChild(dot);
+        });
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+
+    function goToSlide(n) {
+      const slides = document.querySelectorAll('.modal-slideshow .slide');
+      const dots = document.querySelectorAll('#slideDots .dot');
+      // Outgoing: make absolute so it doesn't affect layout
+      slides[currentSlide].classList.remove('active');
+      slides[currentSlide].style.position = 'absolute';
+      if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+      currentSlide = (n + totalSlides) % totalSlides;
+      // Incoming: make relative so it drives slideshow height
+      slides[currentSlide].style.position = 'relative';
+      slides[currentSlide].classList.add('active');
+      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() { goToSlide(currentSlide + 1); }
+    function prevSlide() { goToSlide(currentSlide - 1); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
 </body>
 </html>
