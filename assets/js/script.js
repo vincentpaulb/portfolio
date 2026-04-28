@@ -170,6 +170,36 @@
     function prevSlide() { goToSlide(currentSlide - 1); }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+    function openCertificateModal(src, label) {
+      const overlay = document.getElementById('certificateModalOverlay');
+      const image = document.getElementById('certificateModalImage');
+      const caption = document.getElementById('certificateModalCaption');
+
+      image.src = src;
+      image.alt = label;
+      caption.textContent = label;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCertificateModal() {
+      const overlay = document.getElementById('certificateModalOverlay');
+      const image = document.getElementById('certificateModalImage');
+
+      overlay.classList.remove('open');
+      image.src = '';
+      image.alt = '';
+      document.body.style.overflow = '';
+    }
+
+    function handleCertificateOverlayClick(e) {
+      if (e.target === document.getElementById('certificateModalOverlay')) closeCertificateModal();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeCertificateModal();
+    });
+
 
 
     const scrollBtn = document.getElementById('scrollTop');

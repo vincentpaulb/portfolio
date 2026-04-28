@@ -23,6 +23,7 @@
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
+          <a href="#certificates">Certificates</a>
           <a href="#experience">Experience</a>
           <a href="#contact" class="nav-cta">Contact</a>
         </div>
@@ -279,6 +280,53 @@
       </div>
     </section>
 
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+      <div class="container">
+        <div class="certificates-header">
+          <div class="section-eyebrow reveal">Recognition</div>
+          <h2 class="reveal">Certificates & <em>Credentials</em></h2>
+          <p class="section-copy reveal">
+            A snapshot of completed trainings, certifications, and learning milestones that support my work in development, systems, and AI-assisted solutions.
+          </p>
+        </div>
+        <div class="certificates-grid">
+          <button class="certificate-card reveal" type="button" onclick="openCertificateModal('images/certificates/1.png', 'Certificate 01')">
+            <img src="images/certificates/1.png" alt="Certificate 1">
+            <span class="certificate-label">Certificate 01</span>
+          </button>
+          <button class="certificate-card reveal" type="button" onclick="openCertificateModal('images/certificates/2.png', 'Certificate 02')">
+            <img src="images/certificates/2.png" alt="Certificate 2">
+            <span class="certificate-label">Certificate 02</span>
+          </button>
+          <button class="certificate-card reveal" type="button" onclick="openCertificateModal('images/certificates/3.jpg', 'Certificate 03')">
+            <img src="images/certificates/3.jpg" alt="Certificate 3">
+            <span class="certificate-label">Certificate 03</span>
+          </button>
+          <button class="certificate-card reveal" type="button" onclick="openCertificateModal('images/certificates/4.png', 'Certificate 04')">
+            <img src="images/certificates/4.png" alt="Certificate 4">
+            <span class="certificate-label">Certificate 04</span>
+          </button>
+          <button class="certificate-card reveal" type="button" onclick="openCertificateModal('images/certificates/5.png', 'Certificate 05')">
+            <img src="images/certificates/5.png" alt="Certificate 5">
+            <span class="certificate-label">Certificate 05</span>
+          </button>
+          <button class="certificate-card reveal" type="button" onclick="openCertificateModal('images/certificates/6.png', 'Certificate 06')">
+            <img src="images/certificates/6.png" alt="Certificate 6">
+            <span class="certificate-label">Certificate 06</span>
+          </button>
+          <button class="certificate-card reveal" type="button" onclick="openCertificateModal('images/certificates/7.png', 'Certificate 07')">
+            <img src="images/certificates/7.png" alt="Certificate 7">
+            <span class="certificate-label">Certificate 07</span>
+          </button>
+          <button class="certificate-card reveal" type="button" onclick="openCertificateModal('images/certificates/8.png', 'Certificate 08')">
+            <img src="images/certificates/8.png" alt="Certificate 8">
+            <span class="certificate-label">Certificate 08</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- EXPERIENCE -->
     <section id="experience">
       <div class="container">
@@ -351,7 +399,7 @@
             Whether it's a full-time position or a project collaboration — let's talk.
           </p>
           <div class="contact-actions reveal">
-            <a class="btn btn-primary" href="/cdn-cgi/l/email-protection#384e51565b5d564c48594d545a594a4a4d5f59785f55595154165b5755">
+            <a class="btn btn-primary" href="mailto:vincentpaulbarruga@gmail.com">
               <i class="fa-solid fa-envelope"></i> Email Me
             </a>
             <a class="btn btn-accent" href="VincentPaulBarruga_RESUME.pdf" download="Vincent_Paul_Barruga_Resume.pdf" target="_blank">
@@ -366,7 +414,7 @@
               <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
               <div>
                 <div class="ci-label">Email</div>
-                <div class="ci-val"><a href="/cdn-cgi/l/email-protection#087e61666b6d667c78697d646a697a7a7d6f69486f65696164266b6765"><span class="__cf_email__" data-cfemail="e5938c8b86808b919584908987849797908284a58288848c89cb868a88">[email&#160;protected]</span></a></div>
+                <div class="ci-val"><a href="mailto:vincentpaulbarruga@gmail.com">vincentpaulbarruga@gmail.com</a></div>
               </div>
             </div>
             <div class="contact-item reveal">
@@ -391,7 +439,7 @@
             <a class="social-link" href="https://www.linkedin.com/in/vincent-paul-barruga" target="_blank" title="LinkedIn">
               <i class="fa-brands fa-linkedin-in"></i>
             </a>
-            <a class="social-link" href="/cdn-cgi/l/email-protection#abddc2c5c8cec5dfdbcadec7c9cad9d9decccaebccc6cac2c785c8c4c6" title="Email">
+            <a class="social-link" href="mailto:vincentpaulbarruga@gmail.com" title="Email">
               <i class="fa-solid fa-envelope"></i>
             </a>
           </div>
@@ -406,7 +454,6 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
       // ── Theme Toggle ──
     const html = document.documentElement;
@@ -471,6 +518,17 @@
         <div class="modal-desc" id="modalDesc"></div>
         <div class="modal-feats" id="modalFeats"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE MODAL -->
+  <div class="certificate-modal-overlay" id="certificateModalOverlay" onclick="handleCertificateOverlayClick(event)">
+    <div class="certificate-modal">
+      <button class="modal-close" type="button" onclick="closeCertificateModal()" aria-label="Close certificate modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="certificateModalImage" src="" alt="">
+      <div class="certificate-modal-caption" id="certificateModalCaption"></div>
     </div>
   </div>
 
